@@ -1,0 +1,157 @@
+def bfs(graph, start):
+    visited = []
+    queue = [start]
+
+    while queue:
+        node = queue.pop(0)
+        if node not in visited:
+            visited.append(node)
+            neighbours = graph[node]
+            for neighbour in neighbours:
+                queue.append(neighbour)
+    return visited
+    graph={ 'Amin' : {'Wasim', 'Nick', 'Mike'},
+         'Wasim' : {'Imran', 'Amin'},
+         'Imran' : {'Wasim', 'Faras'},
+         'Faras' : {'Imran'},
+         'Mike' : {'Amin'},
+         'Nick' : {'Amin'}}
+         bfs(graph,'Amin')
+         ['Amin', 'Mike', 'Wasim', 'Nick', 'Imran', 'Faras']
+         # O amin --------------
+# |          |         |
+# O wasim    O nick    O mike
+# |
+# O imran
+# |
+# O faras
+
+bfs(graph, 'Amin')
+['Amin', 'Mike', 'Wasim', 'Nick', 'Imran', 'Faras']
+# O wasim ----
+# |          |
+# O imran    O amin ----
+# |          |         |
+# O faras    O nick    O mike
+
+
+bfs(graph, 'Wasim')
+['Wasim', 'Imran', 'Amin', 'Faras', 'Mike', 'Nick']
+# O faras
+# |
+# O imran
+# |
+# O wasim  O nick  O mike
+# |        |       |
+# O amin ----------
+
+bfs(graph, 'Faras')
+['Faras', 'Imran', 'Wasim', 'Amin', 'Mike', 'Nick']
+[18]
+def dfs(graph, start, visited=None):
+    if visited is None:
+        visited = set()
+    visited.add(start)
+    print(start)
+    for next in graph[start] - visited:
+         dfs(graph, next, visited)
+    return visited
+    graph={ 'Amin' : {'Wasim', 'Nick', 'Mike'},
+         'Wasim' : {'Imran', 'Amin'},
+         'Imran' : {'Wasim','Faras'},
+         'Faras' : {'Imran'},
+         'Mike' :{'Amin'},
+         'Nick' :{'Amin'}}
+         # O amin --------------
+# |          |         |
+# O wasim    O nick    O mike
+# |
+# O imran
+# |
+# O faras
+#
+# turun dari amin ke faras, geser ke nick & mike
+
+dfs(graph, 'Amin')
+Amin
+Mike
+Wasim
+Imran
+Faras
+Nick
+{'Amin', 'Faras', 'Imran', 'Mike', 'Nick', 'Wasim'}
+# O amin --------------
+# |          |         |
+# O wasim    O nick    O mike
+# |
+# O imran
+# |
+# O faras
+#
+# turun dari amin ke faras, naik ke amin, geser ke nick & mike
+
+dfs(graph, 'Wasim')
+Wasim
+Imran
+Faras
+Amin
+Mike
+Nick
+{'Amin', 'Faras', 'Imran', 'Mike', 'Nick', 'Wasim'}
+# O amin --------------
+# |          |         |
+# O wasim    O nick    O mike
+# |
+# O imran
+# |
+# O faras
+#
+# naik dari faras ke amin, geser ke nick & mike
+
+dfs(graph, 'Faras')
+Nick
+Amin
+Mike
+Wasim
+Imran
+Faras
+{'Amin', 'Faras', 'Imran', 'Mike', 'Nick', 'Wasim'}
+def bfs(graph, start):
+    visited = []
+    queue = [start]
+
+    while queue:
+        node = queue.pop(0)
+        if node not in visited:
+            visited.append(node)
+            neighbours = graph[node]
+            for neighbour in neighbours:
+                queue.append(neighbour)
+    return visited
+    graph={ 'Rektor' : {'Warek1', 'Warek2'},
+         'Warek1' : {'Rektor'},
+         'Warek2' : {'Rektor', 'Kaprodi1', 'Kaprodi2', 'Kaprodi3'},
+         'Kaprodi1' : {'Warek2', 'DosenA', 'DosenB', 'DosenC'},
+         'Kaprodi2' : {'Warek2', 'DosenD', 'DosenE'},
+         'Kaprodi3' : {'Warek2', 'DosenF', 'DosenG'},
+         'DosenA' : {'Kaprodi1'},
+         'DosenB' : {'Kaprodi1'},
+         'DosenC' : {'Kaprodi1'},
+         'DosenD' : {'Kaprodi2'},
+         'DosenE' : {'Kaprodi2'},
+         'DosenF' : {'Kaprodi3'},
+         'DosenG' : {'Kaprodi3'}}
+         bfs(graph,'Rektor')
+         ['Rektor',
+ 'Warek1',
+ 'Warek2',
+ 'Kaprodi2',
+ 'Kaprodi1',
+ 'Kaprodi3',
+ 'DosenE',
+ 'DosenD',
+ 'DosenA',
+ 'DosenB',
+ 'DosenC',
+ 'DosenG',
+ 'DosenF']
